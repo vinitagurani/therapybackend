@@ -148,10 +148,6 @@ router.post('/login', async (req, res) => {
 });
 
 
-
-  
-
-
 // Therapist signup
 router.post('/signup', async (req, res) => {
     const { username, password } = req.body;

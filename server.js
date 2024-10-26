@@ -53,10 +53,24 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // CORS options
+// const corsOptions = {
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     // credentials: true,
+// };
+
+const allowedOrigins = ['https://your-production-frontend-url.com', 'http://localhost:5173'];
+
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) { // Allow requests with no origin (like mobile apps)
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    // credentials: true,
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -69,10 +83,10 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/requests', requestRoutes);
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/therapyPlatform', { useNewUrlParser: true, useUnifiedTopology: true })
+const mongoURI = 'mongodb+srv://vinita:vinitagurnani@cluster0.r0lmqrf.mongodb.net/';
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error(err));
+    .catch(err => console.error('MongoDB connection error:', err));
 
 // Start server
 const PORT = process.env.PORT || 5000;
