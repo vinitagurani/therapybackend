@@ -40,7 +40,7 @@
 const express = require('express');
 const router = express.Router();
 const Admin = require('../Models/Admin'); // Assuming you have the Admin model
-const bcrypt = require('bcrypt'); // Import bcrypt
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken'); // Import jsonwebtoken
 const Request = require('../Models/Request');
 

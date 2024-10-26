@@ -76,7 +76,7 @@
 const express = require('express');
 const router = express.Router();
 const Therapist = require('../Models/Therapist');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken'); // Import jsonwebtoken
 const Request = require('../Models/Request'); // Adjust the path as necessary
 
