@@ -59,7 +59,7 @@ const app = express();
 //     // credentials: true,
 // };
 
-const allowedOrigins = ['https://your-production-frontend-url.com', 'http://localhost:5173'];
+const allowedOrigins = ['https://mentalhealthplatform.netlify.app', 'http://localhost:5173'];
 
 const corsOptions = {
     origin: (origin, callback) => {
